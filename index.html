@@ -13,8 +13,8 @@
             height: 100vh;
             margin: 0;
             background-image: url('https://i.ibb.co/LgcF7TX/istockphoto-960366850-612x612.jpg');
-    background-repeat: repeat;
-    background-size: auto;
+            background-repeat: repeat;
+            background-size: auto;
         }
         .container {
             background-color: rgba(255, 255, 255, 0.8);
@@ -93,7 +93,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Match Health Issues with Their Treatments</h1>
+        <h1>Health Issue or Treatment?</h1>
         <div class="tile-container" id="tiles">
             <!-- Tiles will be dynamically inserted here -->
         </div>
@@ -112,20 +112,19 @@
 
     <script>
         const tilesData = [
-            { text: "Fever", type: "healthIssue" },
-            { text: "Cold", type: "healthIssue" },
-            { text: "Headache", type: "healthIssue" },
-            { text: "Diabetes", type: "healthIssue" },
-            { text: "Hypertension", type: "healthIssue" },
-            { text: "Asthma", type: "healthIssue" },
-            { text: "Allergy", type: "healthIssue" },
-            { text: "Antipyretic", type: "treatment" },
-            { text: "Decongestant", type: "treatment" },
-            { text: "Painkiller", type: "treatment" },
-            { text: "Insulin", type: "treatment" },
-            { text: "Antihypertensive", type: "treatment" },
-            { text: "Bronchodilator", type: "treatment" },
-            { text: "Antihistamine", type: "treatment" },
+            { text: "backache", type: "healthIssue" },
+            { text: "a cold", type: "healthIssue" },
+            { text: "a temperature", type: "healthIssue" },
+            { text: "a broken leg", type: "healthIssue" },
+            { text: "a serious stomachache", type: "healthIssue" },
+            { text: "the flu", type: "healthIssue" },
+            { text: "a rash", type: "healthIssue" },
+           
+            { text: "take medicine", type: "treatment" },
+            { text: "have an operation", type: "treatment" },
+            { text: "put on cream", type: "treatment" },
+            { text: "stay in bed", type: "treatment" },
+            { text: "drink tea", type: "treatment" },
         ];
 
         // Shuffle array function
