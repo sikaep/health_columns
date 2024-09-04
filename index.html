@@ -38,7 +38,7 @@
             border: 1px solid #ccc;
             padding: 10px;
             width: 200px;
-            height: 400px;
+            height: 300px;
             margin: 0 10px;
             display: flex;
             flex-direction: column;
@@ -112,18 +112,14 @@
 
     <script>
         const tilesData = [
-            { text: "backache", type: "healthIssue" },
             { text: "a cold", type: "healthIssue" },
             { text: "a temperature", type: "healthIssue" },
             { text: "a broken leg", type: "healthIssue" },
-            { text: "a serious stomachache", type: "healthIssue" },
-            { text: "a rash", type: "healthIssue" },
+            { text: "a headache", type: "healthIssue" },
            
-            { text: "take medicine", type: "treatment" },
-            { text: "have an operation", type: "treatment" },
+            { text: "take pills", type: "treatment" },
             { text: "put on cream", type: "treatment" },
             { text: "stay in bed", type: "treatment" },
-            { text: "drink tea", type: "treatment" },
             { text: "put on a bandage", type: "treatment" },
         ];
 
@@ -164,7 +160,7 @@
         });
 
         // Create drop zones
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 4; i++) {
             const dropzone1 = document.createElement('div');
             dropzone1.classList.add('dropzone');
             healthIssuesColumn.appendChild(dropzone1);
