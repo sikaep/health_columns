@@ -174,14 +174,17 @@
             treatmentsColumn.appendChild(dropzone2);
         }
 
-        // Dragover event for dropzones
-        document.querySelectorAll('.dropzone').forEach(dropzone => {
-            dropzone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                const draggingTile = document.querySelector('.dragging');
-                dropzone.appendChild(draggingTile);
-            });
-        });
+ // Dragover event for dropzones
+document.querySelectorAll('.dropzone').forEach(dropzone => {
+    dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        // Only allow drop if the dropzone is empty
+        if (!dropzone.querySelector('.tile')) {
+            const draggingTile = document.querySelector('.dragging');
+            dropzone.appendChild(draggingTile);
+        }
+    });
+});
 
         // Submit button event
         submitButton.addEventListener('click', () => {
