@@ -117,7 +117,6 @@
             { text: "a temperature", type: "healthIssue" },
             { text: "a broken leg", type: "healthIssue" },
             { text: "a serious stomachache", type: "healthIssue" },
-            { text: "the flu", type: "healthIssue" },
             { text: "a rash", type: "healthIssue" },
            
             { text: "take medicine", type: "treatment" },
@@ -125,6 +124,7 @@
             { text: "put on cream", type: "treatment" },
             { text: "stay in bed", type: "treatment" },
             { text: "drink tea", type: "treatment" },
+            { text: "put on a bandage", type: "treatment" },
         ];
 
         // Shuffle array function
@@ -164,7 +164,7 @@
         });
 
         // Create drop zones
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 6; i++) {
             const dropzone1 = document.createElement('div');
             dropzone1.classList.add('dropzone');
             healthIssuesColumn.appendChild(dropzone1);
