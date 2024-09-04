@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Issues and Treatments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .columns {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .column {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+            height: 300px;
+            margin: 0 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .tile-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tile {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            cursor: grab;
+            border-radius: 5px;
+            text-align: center;
+            width: 180px;
+            user-select: none;
+        }
+        .tile.dragging {
+            opacity: 0.5;
+        }
+        .dropzone {
+            min-height: 40px;
+            background-color: #f8f8f8;
+            border: 1px dashed #ccc;
+            margin: 5px 0;
+            border-radius: 5px;
+            flex-grow: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tile-container" id="tiles">
+            <!-- Tiles will be dynamically inserted here -->
+        </div>
+        <div class="columns">
+            <div class="column" id="healthIssuesColumn">
+                <h3>Health Issues</h3>
+                <!-- Drop zones for health issues -->
+            </div>
+            <div class="column" id="treatmentsColumn">
+                <h3>Treatments</h3>
+                <!-- Drop zones for treatments -->
+            </div>
+        </div>
+        <button id="submit">Submit</button>
+    </div>
+
+    <script>
+        const tilesData = [
+            { text: "Fever", type: "healthIssue" },
+            { text: "Cold", type: "healthIssue" },
+            { text: "Headache", type: "healthIssue" },
+            { text: "Diabetes", type: "healthIssue" },
+            { text: "Hypertension", type: "healthIssue" },
+            { text: "Asthma", type: "healthIssue" },
+            { text: "Allergy", type: "healthIssue" },
+            { text: "Antipyretic", type: "treatment" },
+            { text: "Decongestant", type: "treatment" },
+            { text: "Painkiller", type: "treatment" },
+            { text: "Insulin", type: "treatment" },
+            { text: "Antihypertensive", type: "treatment" },
+            { text: "Bronchodilator", type: "treatment" },
+            { text: "Antihistamine", type: "treatment" },
+        ];
+
+        const tilesContainer = document.getElementById('tiles');
+        const healthIssuesColumn = document.getElementById('healthIssuesColumn');
+        const treatmentsColumn = document.getElementById('treatmentsColumn');
+        const submitButton = document.getElementById('submit');
+
+        // Initialize tiles
+        tilesData.forEach(tileData => {
+            const tile = document.createElement('div');
+            tile.classList.add('tile');
+            tile.draggable = true;
+            tile.textContent = tileData.text;
+            tile.dataset.type = tileData.type;
+
+            // Drag start event
+            tile.addEventListener('dragstart', () => {
+                tile.classList.add('dragging');
+            });
+
+            // Drag end event
+            tile.addEventListener('dragend', () => {
+                tile.classList.remove('dragging');
+            });
+
+            tilesContainer.appendChild(tile);
+        });
+
+        // Create drop zones
+        for (let i = 0; i < 7; i++) {
+            const dropzone1 = document.createElement('div');
+            dropzone1.classList.add('dropzone');
+            healthIssuesColumn.appendChild(dropzone1);
+
+            const dropzone2 = document.createElement('div');
+            dropzone2.classList.add('dropzone');
+            treatmentsColumn.appendChild(dropzone2);
+        }
+
+        // Dragover event for dropzones
+        document.querySelectorAll('.dropzone').forEach(dropzone => {
+            dropzone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                const draggingTile = document.querySelector('.dragging');
+                dropzone.appendChild(draggingTile);
+            });
+        });
+
+        // Submit button event
+        submitButton.addEventListener('click', () => {
+            document.querySelectorAll('.dropzone').forEach(dropzone => {
+                const tile = dropzone.querySelector('.tile');
+                if (tile) {
+                    const isCorrectColumn = (tile.dataset.type === 'healthIssue' && dropzone.parentElement.id === 'healthIssuesColumn') ||
+                                            (tile.dataset.type === 'treatment' && dropzone.parentElement.id === 'treatmentsColumn');
+
+                    if (!isCorrectColumn) {
+                        tilesContainer.appendChild(tile);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
